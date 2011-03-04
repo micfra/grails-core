@@ -88,6 +88,11 @@ public class DefaultGrailsDomainClassProperty implements GrailsDomainClassProper
             checkIfTransient(transientProps);
 
             establishFetchMode();
+
+            //check if property is a domain class and set referencedDomainClass if true
+            if (DomainClassArtefactHandler.isDomainClass(type) && isPersistent()) {
+                setReferencedDomainClass(new DefaultGrailsDomainClass(type));
+            }
         }
     }
 
